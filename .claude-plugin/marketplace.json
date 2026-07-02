@@ -1,0 +1,47 @@
+{
+  "name": "thecodeman-ai-toolkit",
+  "owner": {
+    "name": "Stefan Đokić (TheCodeMan)"
+  },
+  "description": "AI skills and agents for mid/senior .NET developers — EF Core, performance, architecture, testing, security, observability, and DevOps. By TheCodeMan.net.",
+  "plugins": [
+    {
+      "name": "dotnet-ai-toolkit",
+      "source": "./",
+      "displayName": "TheCodeMan .NET AI ToolKit",
+      "description": "44+ Claude skills and 7 specialist agents that run on your real .NET code: EF Core query optimization, Minimal API & architecture scaffolding, xUnit/Testcontainers tests, JWT auth, OpenTelemetry, code review, security audits, and more. Built for modern .NET 10 / C# 14.",
+      "version": "1.1.0",
+      "author": {
+        "name": "Stefan Đokić (TheCodeMan)"
+      },
+      "homepage": "https://thecodeman.net",
+      "repository": "https://github.com/StefanTheCode/dotnet-ai-toolkit-public",
+      "license": "MIT",
+      "category": "dotnet",
+      "keywords": [
+        "dotnet",
+        "csharp",
+        "aspnetcore",
+        "ef-core",
+        "architecture",
+        "testing",
+        "security",
+        "performance",
+        "observability"
+      ],
+      "strict": false,
+      "skills": [
+        "./skills/"
+      ],
+      "agents": [
+        "./agents/aspnetcore-security-auditor.md",
+        "./agents/db-performance-auditor.md",
+        "./agents/dotnet-architecture-reviewer.md",
+        "./agents/dotnet-code-reviewer.md",
+        "./agents/dotnet-upgrade-agent.md",
+        "./agents/legacy-modernization-assistant.md",
+        "./agents/observability-gap-finder.md"
+      ]
+    }
+  ]
+}
