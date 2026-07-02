@@ -9,7 +9,7 @@ Curated by [Stefan Đokić — TheCodeMan](https://thecodeman.net), Microsoft MV
 ## ⚡ Install (one marketplace, two commands)
 
 ```shell
-/plugin marketplace add StefanTheCode/dotnet-ai-toolkit-public
+/plugin marketplace add StefanTheCode/dotnet-ai-toolkit
 /plugin install dotnet-ai-toolkit@thecodeman-ai-toolkit
 ```
 

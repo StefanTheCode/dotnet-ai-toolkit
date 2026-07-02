@@ -5,7 +5,7 @@
 Install everything — all 44+ skills and 7 agents — with two commands:
 
 ```shell
-/plugin marketplace add StefanTheCode/dotnet-ai-toolkit-public
+/plugin marketplace add StefanTheCode/dotnet-ai-toolkit
 /plugin install dotnet-ai-toolkit@thecodeman-ai-toolkit
 ```
 
