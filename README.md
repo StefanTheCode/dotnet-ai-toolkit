@@ -50,6 +50,15 @@ Each skill and agent ships with a companion **USAGE** doc — what it is, when t
 
 ---
 
+## Tools & templates
+
+- 🛠️ **[CLAUDE.md Generator](tools/)** — an interactive tool that generates a tailored `CLAUDE.md` for your project. Pick your stack, architecture, conventions, and the patterns Claude should never suggest. Open `tools/claude-md-generator.html` in a browser.
+- 📄 **[CLAUDE.md template](templates/dotnet-CLAUDE-md-template.md)** — a ready-made starting point you can drop into your repo root and fill in.
+
+A `CLAUDE.md` at your repo root is what stops Claude from writing generic C# — it loads automatically at the start of every session.
+
+---
+
 ## Want to go deeper?
 
 This toolkit is the free, open layer. Inside the **[TheCodeMan AI ToolKit community](https://www.skool.com/thecodeman-ai-toolkit-9723)** I teach you, step by step, how to actually use AI in real .NET work — Claude Code workflows, building your own agents and skills, MCP servers in C#, and shipping AI features (RAG, agents) into your own apps. Live sessions and full courses, with members getting everything first.
