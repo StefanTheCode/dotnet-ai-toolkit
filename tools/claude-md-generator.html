@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CLAUDE.md Generator for .NET — TheCodeMan</title>
+<title>CLAUDE.md Generator for .NET - TheCodeMan</title>
 <style>
   :root{
     --bg:#16122e; --bg2:#1e193b; --card:#221c42; --line:rgba(255,255,255,.10);
@@ -68,7 +68,7 @@
   </header>
 
   <h1>The <span class="y">CLAUDE.md</span> Generator for .NET</h1>
-  <p class="sub">Claude Code starts every session knowing nothing about your repo — so it writes generic C#: controllers, repositories, AutoMapper. Answer a few questions and get a <b>CLAUDE.md</b> that tells it how <i>you</i> build. Drop it in your repo root and Claude writes your .NET from the first prompt.</p>
+  <p class="sub">Claude Code starts every session knowing nothing about your repo - so it writes generic C#: controllers, repositories, AutoMapper. Answer a few questions and get a <b>CLAUDE.md</b> that tells it how <i>you</i> build. Drop it in your repo root and Claude writes your .NET from the first prompt.</p>
 
   <div class="grid">
     <!-- FORM -->
@@ -279,18 +279,8 @@
     </div>
   </div>
 
-  <footer class="cta">
-    <div>
-      <div style="font-size:17px;font-weight:800;margin-bottom:4px">Want Claude to <b>do</b> the work too?</div>
-      <div style="color:var(--muted);font-size:14px;max-width:560px">The full <b>.NET AI ToolKit</b> — 44+ Claude skills, 7 agents & templates that run on your real code — plus lessons & courses, is in the community.</div>
-    </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <a class="act" style="display:inline-block" href="https://www.skool.com/thecodeman-ai-toolkit-9723" target="_blank">Join the ToolKit →</a>
-      <a class="act ghost" style="display:inline-block" href="https://thecodeman.net" target="_blank">Newsletter (20k+)</a>
-    </div>
-  </footer>
   <div style="text-align:center;color:var(--muted);font-size:12px;margin-top:18px">
-    Built by <a href="https://thecodeman.net" target="_blank">Stefan Đokić — TheCodeMan</a> · free to use & share
+    Built by <a href="https://thecodeman.net" target="_blank">Stefan Đokić - TheCodeMan</a>
   </div>
 </div>
 
@@ -335,18 +325,18 @@ function buildMd(){
   const conv=[];
   if(err==='Result pattern') conv.push('- **Errors:** use the **Result pattern** for expected failures (not-found, validation, conflict). Map to HTTP via `ProblemDetails` at the endpoint. Reserve exceptions for the genuinely unexpected.');
   else conv.push('- **Errors:** throw domain exceptions for failures and translate them to `ProblemDetails` via a global exception handler.');
-  if(chk('n_datetime')) conv.push('- **Time:** never use `DateTime.Now`/`DateTime.UtcNow` directly — inject `TimeProvider` (testable, deterministic).');
+  if(chk('n_datetime')) conv.push('- **Time:** never use `DateTime.Now`/`DateTime.UtcNow` directly - inject `TimeProvider` (testable, deterministic).');
   conv.push('- **Async:** every async method takes and passes a `CancellationToken`. Never block on async (`.Result`, `.Wait()`). No `async void` except event handlers.');
   if(web==='Minimal APIs') conv.push('- **APIs:** use `TypedResults`, not `Results`. DTOs are immutable `record` types. Never expose EF entities over the wire.');
   if(data.startsWith('EF Core')) conv.push('- **EF Core:** project to DTOs with `.Select()`; add `.AsNoTracking()` on reads; avoid N+1; paginate list queries. Prefer `AnyAsync()` over `CountAsync() > 0`.');
   if(chk('x_options')) conv.push('- **Config:** use the **Options pattern** (strongly-typed + `ValidateOnStart`), not raw `IConfiguration["..."]` in business logic. Secrets stay out of source.');
   if(chk('x_cache')) conv.push('- **Caching:** use `HybridCache` (L1+L2, tag invalidation, stampede protection), not hand-rolled `IDistributedCache` serialize/deserialize.');
   if(chk('x_polly')) conv.push('- **Resilience:** wrap outbound HTTP with a **Polly v8** pipeline via `AddResilienceHandler` (retry + jitter, circuit breaker, timeout). No hand-rolled retries.');
-  if(map==='Mapster') conv.push('- **Mapping:** use **Mapster** for object mapping — configure explicit `TypeAdapterConfig`, no runtime reflection surprises.');
-  else if(map==='AutoMapper') conv.push('- **Mapping:** AutoMapper is used here — keep profiles explicit and tested; prefer projecting to DTOs in EF queries over mapping full entities.');
+  if(map==='Mapster') conv.push('- **Mapping:** use **Mapster** for object mapping - configure explicit `TypeAdapterConfig`, no runtime reflection surprises.');
+  else if(map==='AutoMapper') conv.push('- **Mapping:** AutoMapper is used here - keep profiles explicit and tested; prefer projecting to DTOs in EF queries over mapping full entities.');
   else conv.push('- **Mapping:** write **explicit** mappings (constructor / `Select`). No mapping library.');
-  if(ids==='UUIDv7 (sequential)') conv.push('- **IDs:** use `Guid.CreateVersion7()` (UUIDv7) for entity keys — sequential, index-friendly.');
-  else if(ids==='Strongly-typed IDs') conv.push('- **IDs:** use **strongly-typed IDs** (readonly record structs) with EF value converters — no raw `Guid`/`int` keys leaking through the domain.');
+  if(ids==='UUIDv7 (sequential)') conv.push('- **IDs:** use `Guid.CreateVersion7()` (UUIDv7) for entity keys - sequential, index-friendly.');
+  else if(ids==='Strongly-typed IDs') conv.push('- **IDs:** use **strongly-typed IDs** (readonly record structs) with EF value converters - no raw `Guid`/`int` keys leaking through the domain.');
   else if(ids==='int / bigint identity') conv.push('- **IDs:** database identity `int`/`bigint` keys.');
   else conv.push('- **IDs:** `Guid` keys.');
   if(json==='System.Text.Json') conv.push('- **Serialization:** use **System.Text.Json** with source-generated contexts for hot paths. Do not add Newtonsoft.Json.');
@@ -359,29 +349,29 @@ function buildMd(){
   if(chk('x_ratelimit')) conv.push('- **Rate limiting:** use the built-in ASP.NET Core rate limiter; protect auth and write endpoints.');
   if(chk('x_health')) conv.push('- **Health checks:** expose liveness + readiness; check real dependencies (DB, cache), not just `200 OK`.');
   if(chk('x_flags')) conv.push('- **Feature flags:** gate features with `Microsoft.FeatureManagement`, not `if` + config booleans.');
-  conv.push(`- **Modern C#:** use ${Number(dn)>=9?'primary constructors, collection expressions, ':''}records, and pattern matching where they genuinely improve the code — not for their own sake.`);
+  conv.push(`- **Modern C#:** use ${Number(dn)>=9?'primary constructors, collection expressions, ':''}records, and pattern matching where they genuinely improve the code - not for their own sake.`);
 
   // testing
   let testNote='';
   if(test==='xUnit + Testcontainers') testNote='Prefer **integration tests** for anything touching the database: `WebApplicationFactory<Program>` + **Testcontainers** (real engine). Unit tests only for pure logic.';
   else if(test==='xUnit + mocks') testNote='xUnit with mocks for isolated units. Mock only boundaries you own.';
   else testNote='NUnit test suite. Keep tests isolated and deterministic.';
-  if(chk('n_inmem')) testNote+=' Do **not** use `UseInMemoryDatabase` or mock `DbContext` — they hide real bugs.';
+  if(chk('n_inmem')) testNote+=' Do **not** use `UseInMemoryDatabase` or mock `DbContext` - they hide real bugs.';
 
   // never suggest
   const never=[];
-  if(chk('n_automapper') && map!=='AutoMapper') never.push('- **AutoMapper** — write explicit mappings.');
-  if(chk('n_repo')) never.push('- **Repository / UnitOfWork over EF Core** — `DbContext` already is one. Use it directly.');
-  if(chk('n_exc')) never.push('- **Exceptions for control flow** — use the Result pattern for expected outcomes.');
-  if(chk('n_datetime')) never.push('- **`DateTime.Now`** — use `TimeProvider`.');
-  if(chk('n_inmem')) never.push('- **In-memory database in tests** — use Testcontainers.');
-  if(chk('n_bizctrl')) never.push('- **Business logic in controllers/endpoints** — keep endpoints thin; logic lives in handlers/services.');
-  if(chk('n_magic')) never.push('- **Magic strings/numbers** — use constants, enums, or the Options pattern.');
-  if(chk('n_syncover')) never.push('- **Sync-over-async** (`.Result`, `.Wait()`, `.GetAwaiter().GetResult()`) — stay async end to end.');
-  if(chk('n_regions')) never.push('- **`#region` blocks** — if a file needs regions to navigate, split it.');
-  if(chk('n_newtonsoft') && json!=='Newtonsoft.Json') never.push('- **Newtonsoft.Json** — use System.Text.Json.');
-  never.push('- **Service locator** (`GetService` in business logic) — use constructor injection.');
-  never.push('- **Over-abstraction** — no interface with a single implementation "just in case."');
+  if(chk('n_automapper') && map!=='AutoMapper') never.push('- **AutoMapper** - write explicit mappings.');
+  if(chk('n_repo')) never.push('- **Repository / UnitOfWork over EF Core** - `DbContext` already is one. Use it directly.');
+  if(chk('n_exc')) never.push('- **Exceptions for control flow** - use the Result pattern for expected outcomes.');
+  if(chk('n_datetime')) never.push('- **`DateTime.Now`** - use `TimeProvider`.');
+  if(chk('n_inmem')) never.push('- **In-memory database in tests** - use Testcontainers.');
+  if(chk('n_bizctrl')) never.push('- **Business logic in controllers/endpoints** - keep endpoints thin; logic lives in handlers/services.');
+  if(chk('n_magic')) never.push('- **Magic strings/numbers** - use constants, enums, or the Options pattern.');
+  if(chk('n_syncover')) never.push('- **Sync-over-async** (`.Result`, `.Wait()`, `.GetAwaiter().GetResult()`) - stay async end to end.');
+  if(chk('n_regions')) never.push('- **`#region` blocks** - if a file needs regions to navigate, split it.');
+  if(chk('n_newtonsoft') && json!=='Newtonsoft.Json') never.push('- **Newtonsoft.Json** - use System.Text.Json.');
+  never.push('- **Service locator** (`GetService` in business logic) - use constructor injection.');
+  never.push('- **Over-abstraction** - no interface with a single implementation "just in case."');
 
   // commands
   const runProj = web==='Worker Service' ? '[src/Worker]' : '[src/Api]';
@@ -390,12 +380,12 @@ function buildMd(){
   if(chk('x_docker')) cmds.push('- Docker: `docker build -t '+((name.toLowerCase().replace(/[^a-z0-9]+/g,'-'))||'app')+' .`');
 
   const setup=[];
-  if(chk('x_cpm')) setup.push('- **Central Package Management** — versions live in `Directory.Packages.props`; never pin versions in individual `.csproj` files.');
+  if(chk('x_cpm')) setup.push('- **Central Package Management** - versions live in `Directory.Packages.props`; never pin versions in individual `.csproj` files.');
   if(chk('x_nullable')) setup.push('- **Nullable reference types** are enabled solution-wide; treat nullable warnings as errors.');
   if(chk('x_analyzers')) setup.push('- **Analyzers + `.editorconfig`** are enforced; run `dotnet format` and keep the build warning-free.');
   if(chk('x_globalusing')) setup.push('- **Global usings** for common namespaces; keep per-file usings minimal.');
   if(chk('x_docker')) setup.push('- **Docker:** multi-stage build, non-root user, health check, small runtime image.');
-  if(chk('x_ci')) setup.push('- **CI:** GitHub Actions in `.github/workflows` — build → test → publish on every push/PR.');
+  if(chk('x_ci')) setup.push('- **CI:** GitHub Actions in `.github/workflows` - build → test → publish on every push/PR.');
 
   let md=`# Project: ${name}\n\n`;
   md+=`Instructions for Claude Code working in this repository. Follow these by default; ask before deviating.\n\n`;
@@ -406,8 +396,8 @@ function buildMd(){
   md+=`## Never suggest\n\n${never.join('\n')}\n\n`;
   if(setup.length) md+=`## Project setup\n\n${setup.join('\n')}\n\n`;
   md+=`## Commands\n\n${cmds.join('\n')}\n\n`;
-  md+=`## Workflow with Claude\n\n- For non-trivial changes, give a short **plan first** and wait for approval before editing.\n- **Don't invent problems** — leave code that's already correct and idiomatic alone.\n- Explain each change in one line (what + why).\n\n`;
-  md+=`<!-- Generated with the CLAUDE.md Generator for .NET — thecodeman.net -->\n`;
+  md+=`## Workflow with Claude\n\n- For non-trivial changes, give a short **plan first** and wait for approval before editing.\n- **Don't invent problems** - leave code that's already correct and idiomatic alone.\n- Explain each change in one line (what + why).\n\n`;
+  md+=`<!-- Generated with the CLAUDE.md Generator for .NET - thecodeman.net -->\n`;
   return md;
 }
 
